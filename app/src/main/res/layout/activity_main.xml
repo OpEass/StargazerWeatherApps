@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0F172A"
+    tools:context=".MainActivity">
+
+    <!-- LAYER 1: VIDEO BACKGROUND -->
+    <FrameLayout
+        android:id="@+id/headerVideoContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.example.stargazerweatherapp.FullScreenVideoView
+            android:id="@+id/videoViewBg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#33000000" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="20dp">
+
+            <RelativeLayout
+                android:id="@+id/topBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="32dp">
+
+                <TextView
+                    android:id="@+id/tvAppName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="STARGAZER"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:orientation="horizontal">
+                    <ImageButton android:id="@+id/btnRefresh" android:layout_width="36dp" android:layout_height="36dp" android:background="?attr/selectableItemBackgroundBorderless" android:src="@android:drawable/stat_notify_sync" app:tint="#FFFFFF" />
+                    <ImageButton android:id="@+id/btnAdd" android:layout_width="36dp" android:layout_height="36dp" android:layout_marginStart="8dp" android:background="?attr/selectableItemBackgroundBorderless" android:src="@android:drawable/ic_input_add" app:tint="#FFFFFF" />
+                    <ImageButton android:id="@+id/btnSettings" android:layout_width="36dp" android:layout_height="36dp" android:layout_marginStart="8dp" android:background="?attr/selectableItemBackgroundBorderless" android:src="@android:drawable/ic_menu_preferences" app:tint="#FFFFFF" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/llLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="40dp"
+                android:orientation="vertical">
+
+                <TextView android:id="@+id/tvCity" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Gunung Pati" android:textColor="#FFFFFF" android:textSize="22sp" android:textStyle="bold" />
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_vertical" android:orientation="horizontal">
+                    <TextView android:id="@+id/tvTemp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="31°" android:textColor="#FFFFFF" android:textSize="80sp" android:textStyle="bold" />
+                    <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="☀️" android:textSize="64sp" />
+                </LinearLayout>
+                <TextView android:id="@+id/tvCondition" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Cerah" android:textColor="#FFFFFF" android:textSize="20sp" />
+            </LinearLayout>
+        </RelativeLayout>
+    </FrameLayout>
+
+    <!-- LAYER 2: KONTEN SCROLL -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Area Transparan -->
+            <View
+                android:id="@+id/transparentSpace"
+                android:layout_width="match_parent"
+                android:layout_height="800dp" />
+
+            <!-- KONTEN SOLID (Ramalan & Aktivitas) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#0F172A"
+                android:elevation="8dp"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <!-- Ramalan 5 Hari -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="#1E293B"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="0dp">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="16dp">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ramalan 5 Hari" android:textColor="#FFFFFF" android:textSize="16sp" android:textStyle="bold" />
+
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:orientation="horizontal" android:weightSum="5">
+                            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:orientation="vertical">
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Sen" android:textColor="#94A3B8" />
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:text="☀️" android:textSize="20sp" />
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:text="31°" android:textColor="#FFFFFF" android:textStyle="bold" />
+                            </LinearLayout>
+                            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:orientation="vertical">
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Sel" android:textColor="#94A3B8" />
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:text="☁️" android:textSize="20sp" />
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:text="28°" android:textColor="#FFFFFF" android:textStyle="bold" />
+                            </LinearLayout>
+                            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:orientation="vertical">
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Rab" android:textColor="#94A3B8" />
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:text="☁️" android:textSize="20sp" />
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="27°" android:textColor="#FFFFFF" android:textStyle="bold" />
+                            </LinearLayout>
+                            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:orientation="vertical">
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Kam" android:textColor="#94A3B8" />
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:text="☀️" android:textSize="20sp" />
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="30°" android:textColor="#FFFFFF" android:textStyle="bold" />
+                            </LinearLayout>
+                            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:orientation="vertical">
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Jum" android:textColor="#94A3B8" />
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:text="☁️" android:textSize="20sp" />
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="29°" android:textColor="#FFFFFF" android:textStyle="bold" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <View android:layout_width="match_parent" android:layout_height="1dp" android:layout_marginVertical="16dp" android:background="#33FFFFFF" />
+
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:weightSum="3">
+                            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:orientation="vertical">
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="72%" android:textColor="#FFFFFF" android:textStyle="bold" />
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Kelembapan" android:textColor="#94A3B8" android:textSize="12sp" />
+                            </LinearLayout>
+                            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:orientation="vertical">
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="12 km/h" android:textColor="#FFFFFF" android:textStyle="bold" />
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Angin" android:textColor="#94A3B8" android:textSize="12sp" />
+                            </LinearLayout>
+                            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:orientation="vertical">
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="1013 hPa" android:textColor="#FFFFFF" android:textStyle="bold" />
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tekanan" android:textColor="#94A3B8" android:textSize="12sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- 6 GRID DETAIL CUACA -->
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:columnCount="2"
+                    android:rowCount="3"> <!-- rowCount diubah jadi 3 -->
+
+                    <!-- 1. Kelembapan -->
+                    <androidx.cardview.widget.CardView android:layout_width="0dp" android:layout_height="90dp" android:layout_columnWeight="1" android:layout_margin="4dp" app:cardBackgroundColor="#1E293B" app:cardCornerRadius="12dp" app:cardElevation="0dp">
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:padding="12dp">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Kelembapan" android:textColor="#FFFFFF" android:textStyle="bold" android:textSize="14sp" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="64%" android:textColor="#FFFFFF" android:textSize="24sp" android:textStyle="bold" android:layout_marginTop="4dp" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Titik embun: 22°" android:textColor="#94A3B8" android:textSize="10sp" android:layout_marginTop="4dp" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- 2. Suhu -->
+                    <androidx.cardview.widget.CardView android:layout_width="0dp" android:layout_height="90dp" android:layout_columnWeight="1" android:layout_margin="4dp" app:cardBackgroundColor="#1E293B" app:cardCornerRadius="12dp" app:cardElevation="0dp">
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:padding="12dp">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Suhu" android:textColor="#FFFFFF" android:textStyle="bold" android:textSize="14sp" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="32°" android:textColor="#FFFFFF" android:textSize="24sp" android:textStyle="bold" android:layout_marginTop="4dp" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Terasa 35°C" android:textColor="#94A3B8" android:textSize="10sp" android:layout_marginTop="4dp" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- 3. Angin -->
+                    <androidx.cardview.widget.CardView android:layout_width="0dp" android:layout_height="90dp" android:layout_columnWeight="1" android:layout_margin="4dp" app:cardBackgroundColor="#1E293B" app:cardCornerRadius="12dp" app:cardElevation="0dp">
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:padding="12dp">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Angin" android:textColor="#FFFFFF" android:textStyle="bold" android:textSize="14sp" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="12 km/h" android:textColor="#FFFFFF" android:textSize="20sp" android:textStyle="bold" android:layout_marginTop="4dp" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Arah: Tenggara" android:textColor="#94A3B8" android:textSize="10sp" android:layout_marginTop="4dp" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- 4. Udara -->
+                    <androidx.cardview.widget.CardView android:layout_width="0dp" android:layout_height="90dp" android:layout_columnWeight="1" android:layout_margin="4dp" app:cardBackgroundColor="#1E293B" app:cardCornerRadius="12dp" app:cardElevation="0dp">
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:padding="12dp">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Udara" android:textColor="#FFFFFF" android:textStyle="bold" android:textSize="14sp" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="52 AQI" android:textColor="#FFFFFF" android:textSize="20sp" android:textStyle="bold" android:layout_marginTop="4dp" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Sedang" android:textColor="#94A3B8" android:textSize="10sp" android:layout_marginTop="4dp" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- 5. UV -->
+                    <androidx.cardview.widget.CardView android:layout_width="0dp" android:layout_height="90dp" android:layout_columnWeight="1" android:layout_margin="4dp" app:cardBackgroundColor="#1E293B" app:cardCornerRadius="12dp" app:cardElevation="0dp">
+                        <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent" android:padding="12dp">
+                            <TextView android:id="@+id/tvUvTitle" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="UV" android:textColor="#FFFFFF" android:textStyle="bold" android:textSize="14sp" />
+                            <TextView android:id="@+id/tvUvVal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@id/tvUvTitle" android:text="3" android:textColor="#FFFFFF" android:textSize="24sp" android:textStyle="bold" android:layout_marginTop="4dp" />
+                            <ProgressBar style="?android:attr/progressBarStyleHorizontal" android:layout_width="match_parent" android:layout_height="4dp" android:layout_toEndOf="@id/tvUvVal" android:layout_alignBottom="@id/tvUvVal" android:layout_marginStart="12dp" android:layout_marginBottom="6dp" android:progress="30" android:progressTint="#8BC34A" android:progressBackgroundTint="#33FFFFFF" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentBottom="true" android:text="Rendah" android:textColor="#94A3B8" android:textSize="10sp" />
+                        </RelativeLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- 6. Matahari -->
+                    <androidx.cardview.widget.CardView android:layout_width="0dp" android:layout_height="90dp" android:layout_columnWeight="1" android:layout_margin="4dp" app:cardBackgroundColor="#1E293B" app:cardCornerRadius="12dp" app:cardElevation="0dp">
+                        <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent" android:padding="12dp">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Matahari" android:textColor="#FFFFFF" android:textStyle="bold" android:textSize="14sp" />
+
+                            <!-- Sun Arc Info (Terbit & Terbenam) -->
+                            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_alignParentBottom="true" android:orientation="horizontal">
+                                <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="vertical">
+                                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Terbit" android:textColor="#94A3B8" android:textSize="10sp" />
+                                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="05:42" android:textColor="#FFFFFF" android:textSize="12sp" android:textStyle="bold" />
+                                </LinearLayout>
+                                <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" android:layout_gravity="center_vertical" android:layout_marginHorizontal="8dp" android:background="#33FFFFFF"/>
+                                <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="end">
+                                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Terbenam" android:textColor="#94A3B8" android:textSize="10sp" />
+                                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="17:48" android:textColor="#FFFFFF" android:textSize="12sp" android:textStyle="bold" />
+                                </LinearLayout>
+                            </LinearLayout>
+                        </RelativeLayout>
+                    </androidx.cardview.widget.CardView>
+
+                </GridLayout>
+
+
+                <!-- ========================================== -->
+                <!-- AKTIVITAS REKOMENDASI -->
+                <!-- ========================================== -->
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal" android:layout_marginTop="32dp" android:layout_marginBottom="16dp" android:text="Aktivitas Rekomendasi" android:textColor="#FFFFFF" android:textSize="20sp" android:textStyle="bold" />
+
+                <!-- OUTDOOR SECTION -->
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="8dp">
+                    <androidx.cardview.widget.CardView android:layout_width="0dp" android:layout_height="40dp" android:layout_weight="1" app:cardBackgroundColor="#1E293B" app:cardCornerRadius="10dp" app:cardElevation="0dp"><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:text="Outdoor" android:textColor="#FFFFFF" android:textSize="16sp" android:textStyle="bold" /></androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView android:id="@+id/btnAddOutdoor" android:layout_width="40dp" android:layout_height="40dp" android:layout_marginStart="8dp" android:clickable="true" android:focusable="true" android:foreground="?attr/selectableItemBackground" app:cardBackgroundColor="#1E293B" app:cardCornerRadius="10dp" app:cardElevation="0dp"><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:text="+" android:textColor="#FFFFFF" android:textSize="20sp" android:textStyle="bold" /></androidx.cardview.widget.CardView>
+                </LinearLayout>
+
+                <!-- Outdoor 1: Jogging -->
+                <androidx.cardview.widget.CardView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="8dp" app:cardBackgroundColor="#1E293B" app:cardCornerRadius="12dp" app:cardElevation="0dp">
+                    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="12dp">
+                        <TextView android:id="@+id/tvJogging" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="📈 Jogging" android:textColor="#FFFFFF" android:textStyle="bold" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:text="70%" android:textColor="#FFFFFF" android:textStyle="bold" />
+                        <ProgressBar style="?android:attr/progressBarStyleHorizontal" android:layout_width="match_parent" android:layout_height="6dp" android:layout_below="@id/tvJogging" android:layout_marginTop="8dp" android:progress="70" android:progressTint="#8BC34A" android:progressBackgroundTint="#33FFFFFF" />
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Outdoor 2: Hiking -->
+                <androidx.cardview.widget.CardView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="8dp" app:cardBackgroundColor="#1E293B" app:cardCornerRadius="12dp" app:cardElevation="0dp">
+                    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="12dp">
+                        <TextView android:id="@+id/tvHiking" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⛰️ Hiking" android:textColor="#FFFFFF" android:textStyle="bold" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:text="55%" android:textColor="#FFFFFF" android:textStyle="bold" />
+                        <ProgressBar style="?android:attr/progressBarStyleHorizontal" android:layout_width="match_parent" android:layout_height="6dp" android:layout_below="@id/tvHiking" android:layout_marginTop="8dp" android:progress="55" android:progressTint="#FF9800" android:progressBackgroundTint="#33FFFFFF" />
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Outdoor 3: Memancing -->
+                <androidx.cardview.widget.CardView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="24dp" app:cardBackgroundColor="#1E293B" app:cardCornerRadius="12dp" app:cardElevation="0dp">
+                    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="12dp">
+                        <TextView android:id="@+id/tvMemancing" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="🎣 Memancing" android:textColor="#FFFFFF" android:textStyle="bold" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:text="20%" android:textColor="#FFFFFF" android:textStyle="bold" />
+                        <ProgressBar style="?android:attr/progressBarStyleHorizontal" android:layout_width="match_parent" android:layout_height="6dp" android:layout_below="@id/tvMemancing" android:layout_marginTop="8dp" android:progress="20" android:progressTint="#F44336" android:progressBackgroundTint="#33FFFFFF" />
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- INDOOR SECTION -->
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="8dp">
+                    <androidx.cardview.widget.CardView android:layout_width="0dp" android:layout_height="40dp" android:layout_weight="1" app:cardBackgroundColor="#1E293B" app:cardCornerRadius="10dp" app:cardElevation="0dp"><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:text="Indoor" android:textColor="#FFFFFF" android:textSize="16sp" android:textStyle="bold" /></androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView android:id="@+id/btnAddIndoor" android:layout_width="40dp" android:layout_height="40dp" android:layout_marginStart="8dp" android:clickable="true" android:focusable="true" android:foreground="?attr/selectableItemBackground" app:cardBackgroundColor="#1E293B" app:cardCornerRadius="10dp" app:cardElevation="0dp"><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:text="+" android:textColor="#FFFFFF" android:textSize="20sp" android:textStyle="bold" /></androidx.cardview.widget.CardView>
+                </LinearLayout>
+
+                <!-- Indoor 1: Yoga -->
+                <androidx.cardview.widget.CardView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="8dp" app:cardBackgroundColor="#1E293B" app:cardCornerRadius="12dp" app:cardElevation="0dp">
+                    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="12dp">
+                        <TextView android:id="@+id/tvYoga" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="🧘 Yoga" android:textColor="#FFFFFF" android:textStyle="bold" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:text="30%" android:textColor="#FFFFFF" android:textStyle="bold" />
+                        <ProgressBar style="?android:attr/progressBarStyleHorizontal" android:layout_width="match_parent" android:layout_height="6dp" android:layout_below="@id/tvYoga" android:layout_marginTop="8dp" android:progress="30" android:progressTint="#FF9800" android:progressBackgroundTint="#33FFFFFF" />
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Indoor 2: Baca Buku -->
+                <androidx.cardview.widget.CardView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="8dp" app:cardBackgroundColor="#1E293B" app:cardCornerRadius="12dp" app:cardElevation="0dp">
+                    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="12dp">
+                        <TextView android:id="@+id/tvBaca" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="📖 Baca Buku" android:textColor="#FFFFFF" android:textStyle="bold" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:text="15%" android:textColor="#FFFFFF" android:textStyle="bold" />
+                        <ProgressBar style="?android:attr/progressBarStyleHorizontal" android:layout_width="match_parent" android:layout_height="6dp" android:layout_below="@id/tvBaca" android:layout_marginTop="8dp" android:progress="15" android:progressTint="#F44336" android:progressBackgroundTint="#33FFFFFF" />
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Indoor 3: Memasak -->
+                <androidx.cardview.widget.CardView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="40dp" app:cardBackgroundColor="#1E293B" app:cardCornerRadius="12dp" app:cardElevation="0dp">
+                    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="12dp">
+                        <TextView android:id="@+id/tvMemasak" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="🍳 Memasak" android:textColor="#FFFFFF" android:textStyle="bold" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:text="80%" android:textColor="#FFFFFF" android:textStyle="bold" />
+                        <ProgressBar style="?android:attr/progressBarStyleHorizontal" android:layout_width="match_parent" android:layout_height="6dp" android:layout_below="@id/tvMemasak" android:layout_marginTop="8dp" android:progress="80" android:progressTint="#8BC34A" android:progressBackgroundTint="#33FFFFFF" />
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- FOOTER LOGO -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="40dp"
+                    android:gravity="center"
+                    android:text="STARGAZER"
+                    android:textColor="#94A3B8"
+                    android:textSize="12sp"
+                    android:textStyle="bold|italic" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</FrameLayout>
